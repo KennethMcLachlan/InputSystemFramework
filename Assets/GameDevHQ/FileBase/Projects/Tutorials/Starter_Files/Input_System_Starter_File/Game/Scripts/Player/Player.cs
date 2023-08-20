@@ -77,14 +77,13 @@ namespace Game.Scripts.Player
             _playerGrounded = _controller.isGrounded;
 
             var move = _input.Player.Movement.ReadValue<Vector2>();
-            transform.Translate(new Vector3(move.x, 0, move.y) * _speed * Time.deltaTime);
 
             transform.Rotate(transform.up, move.x);
 
-            var direction = transform.forward * move;
+            var direction = transform.forward * move.y;
             var velocity = direction * _speed;
 
-            _anim.SetFloat("Speed", Mathf.Abs(move.magnitude));
+            _anim.SetFloat("Speed", Mathf.Abs(velocity.magnitude));
 
             if (_playerGrounded)
                 velocity.y = 0f;
@@ -93,7 +92,7 @@ namespace Game.Scripts.Player
                 velocity.y += -20f * Time.deltaTime;
             }
 
-            //_controller.Move(velocity * Time.deltaTime);
+            _controller.Move(direction * _speed * Time.deltaTime);
 
         }
         private void CalculateMovement()
