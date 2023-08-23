@@ -106,7 +106,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""85aabb86-adb8-468b-8754-826514cf41b3"",
                     ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": ""Press(pressPoint=1.401298E-45)"",
+                    ""interactions"": ""Press(pressPoint=1.401298E-45,behavior=2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Interact"",
@@ -133,7 +133,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""3D Vector"",
                     ""id"": ""f375e93f-3787-49bc-b678-9ae8c944efc7"",
-                    ""path"": ""3DVector"",
+                    ""path"": ""3DVector(mode=1)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

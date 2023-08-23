@@ -23,6 +23,20 @@ namespace Game.Scripts.LiveObjects
         public static event Action onHackComplete;
         public static event Action onHackEnded;
 
+        private PlayerInputActions _input;
+
+        ////private void Start()
+        ////{
+        ////    _input = new PlayerInputActions();
+        ////    _input.Player.Enable();
+        ////    _input.Player.Interact.performed += Interact_performed;
+        ////}
+
+        ////private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        ////{
+        ////    //Interact Input
+        ////}
+
         private void OnEnable()
         {
             InteractableZone.onHoldStarted += InteractableZone_onHoldStarted;
@@ -33,6 +47,33 @@ namespace Game.Scripts.LiveObjects
         {
             if (_hacked == true)
             {
+
+                //----Input Attempt----
+
+                //var interact = _input.Player.Interact.WasPressedThisFrame();
+                //if (interact)
+                //{
+                //    Debug.Log("Enter was pressed");
+                //    var previous = _activeCamera;
+                //    _activeCamera++;
+
+
+                //    if (_activeCamera >= _cameras.Length)
+                //        _activeCamera = 0;
+
+
+                //    _cameras[_activeCamera].Priority = 11;
+                //    _cameras[previous].Priority = 9;
+                //}
+
+                //if (Input.GetKeyDown(KeyCode.Escape))
+                //{
+
+                //    _hacked = false;
+                //    onHackEnded?.Invoke();
+                //    ResetCameras();
+                //}
+
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     var previous = _activeCamera;
