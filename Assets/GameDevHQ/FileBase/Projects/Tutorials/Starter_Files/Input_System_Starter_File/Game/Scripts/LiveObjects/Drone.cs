@@ -37,8 +37,14 @@ namespace Game.Scripts.LiveObjects
             _input = new PlayerInputActions();
             _input.Drone.Enable();
             _input.Drone.Movement.performed += Movement_performed;
+            _input.Player.Enable();
+            _input.Player.CamEscape.performed += CamEscape_performed;
         }
 
+        private void CamEscape_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            //Escape
+        }
 
         private void Movement_performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
@@ -74,10 +80,12 @@ namespace Game.Scripts.LiveObjects
         {
             if (_inFlightMode)
             {
+                var escape = _input.Player.CamEscape.WasPressedThisFrame();
+
                 CalculateTilt();
                 CalculateMovementUpdate();
 
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (escape)
                 {
                     _inFlightMode = false;
                     onExitFlightmode?.Invoke();

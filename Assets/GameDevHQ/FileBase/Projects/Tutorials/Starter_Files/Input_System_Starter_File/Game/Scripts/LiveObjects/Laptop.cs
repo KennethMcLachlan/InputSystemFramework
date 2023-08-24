@@ -20,22 +20,83 @@ namespace Game.Scripts.LiveObjects
         [SerializeField]
         private InteractableZone _interactableZone;
 
+        //public int zoneID;
+
         public static event Action onHackComplete;
         public static event Action onHackEnded;
 
         private PlayerInputActions _input;
 
-        ////private void Start()
-        ////{
-        ////    _input = new PlayerInputActions();
-        ////    _input.Player.Enable();
-        ////    _input.Player.Interact.performed += Interact_performed;
-        ////}
+        private void Start()
+        {
+            _input = new PlayerInputActions();
+            _input.Player.Enable();
+            _input.Player.Interact.performed += Interact_performed;
+            _input.Player.Interact.canceled += Interact_canceled;
+            _input.Player.CamEscape.performed += CamEscape_performed;
+            _input.Player.CamEscape.canceled += CamEscape_canceled;
+        }
 
-        ////private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-        ////{
-        ////    //Interact Input
-        ////}
+        private void CamEscape_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            //CamEscapeCanceled
+        }
+
+        private void CamEscape_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            //Cancel Performed
+        }
+
+        private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+        {
+            //    //    //Interact Input
+
+            //    //////_progressBar.gameObject.SetActive(true);
+            //    //////StartCoroutine(HackingRoutine());
+            //    //////onHackComplete?.Invoke();
+
+            //    //    //InteractableZone.onHoldStarted += InteractableZone_onHoldStarted;
+
+            //    //    //OnEnable();
+
+            //    //    //if (zoneID == 3 && _hacked == false) //Hacking terminal
+            //    //    //{
+            //    //    //    _progressBar.gameObject.SetActive(true);
+            //    //    //    StartCoroutine(HackingRoutine());
+            //    //    //    onHackComplete?.Invoke();
+            //    //    //}
+
+
+        }
+
+        private void Interact_canceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
+        {
+            //    //    ////////if (_hacked == true)
+            //    //    ////////    return;
+
+            //    //    ////////StopAllCoroutines();
+            //    //    ////////_progressBar.gameObject.SetActive(false);
+            //    //    ////////_progressBar.value = 0;
+            //    //    ////////onHackEnded?.Invoke();
+
+            //    //    //InteractableZone.onHoldEnded += InteractableZone_onHoldEnded;
+
+            //    //    //OnDisable();
+
+            //    //    //if (zoneID == 3) //Hacking terminal
+            //    //    //{
+            //    //    //    if (_hacked == true)
+            //    //    //        return;
+
+            //    //    //    StopAllCoroutines();
+            //    //    //    _progressBar.gameObject.SetActive(false);
+            //    //    //    _progressBar.value = 0;
+            //    //    //    onHackEnded?.Invoke();
+            //    //    //}
+
+
+
+        }
 
         private void OnEnable()
         {
@@ -43,17 +104,40 @@ namespace Game.Scripts.LiveObjects
             InteractableZone.onHoldEnded += InteractableZone_onHoldEnded;
         }
 
+
+        
+
         private void Update()
         {
             if (_hacked == true)
             {
+                var interact = _input.Player.Interact.WasPressedThisFrame();
 
-                //----Input Attempt----
+                var escape = _input.Player.CamEscape.WasPressedThisFrame();
 
-                //var interact = _input.Player.Interact.WasPressedThisFrame();
-                //if (interact)
+                if (interact)
+                {
+                    var previous = _activeCamera;
+                    _activeCamera++;
+
+
+                    if (_activeCamera >= _cameras.Length)
+                        _activeCamera = 0;
+
+
+                    _cameras[_activeCamera].Priority = 11;
+                    _cameras[previous].Priority = 9;
+                }
+
+                if (escape)
+                {
+                    _hacked = false;
+                    onHackEnded?.Invoke();
+                    ResetCameras();
+                }
+
+                //if (Input.GetKeyDown(KeyCode.E))
                 //{
-                //    Debug.Log("Enter was pressed");
                 //    var previous = _activeCamera;
                 //    _activeCamera++;
 
@@ -68,32 +152,11 @@ namespace Game.Scripts.LiveObjects
 
                 //if (Input.GetKeyDown(KeyCode.Escape))
                 //{
-
                 //    _hacked = false;
                 //    onHackEnded?.Invoke();
                 //    ResetCameras();
                 //}
 
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    var previous = _activeCamera;
-                    _activeCamera++;
-
-
-                    if (_activeCamera >= _cameras.Length)
-                        _activeCamera = 0;
-
-
-                    _cameras[_activeCamera].Priority = 11;
-                    _cameras[previous].Priority = 9;
-                }
-
-                if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    _hacked = false;
-                    onHackEnded?.Invoke();
-                    ResetCameras();
-                }
             }
         }
 
@@ -107,29 +170,36 @@ namespace Game.Scripts.LiveObjects
 
         private void InteractableZone_onHoldStarted(int zoneID)
         {
+
             if (zoneID == 3 && _hacked == false) //Hacking terminal
             {
                 _progressBar.gameObject.SetActive(true);
+
+                Debug.Log("Progress bar is active");
+
                 StartCoroutine(HackingRoutine());
+                Debug.Log("Hacking Routine is Running");
                 onHackComplete?.Invoke();
             }
         }
 
         private void InteractableZone_onHoldEnded(int zoneID)
         {
+
             if (zoneID == 3) //Hacking terminal
             {
                 if (_hacked == true)
                     return;
 
                 StopAllCoroutines();
+                Debug.Log("Coroutine has stopped");
                 _progressBar.gameObject.SetActive(false);
                 _progressBar.value = 0;
                 onHackEnded?.Invoke();
             }
         }
 
-        
+
         IEnumerator HackingRoutine()
         {
             while (_progressBar.value < 1)
@@ -148,7 +218,7 @@ namespace Game.Scripts.LiveObjects
             //enable Vcam1
             _cameras[0].Priority = 11;
         }
-        
+
         private void OnDisable()
         {
             InteractableZone.onHoldStarted -= InteractableZone_onHoldStarted;

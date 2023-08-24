@@ -23,6 +23,27 @@ namespace Game.Scripts.LiveObjects
         public static event Action onDriveModeEntered;
         public static event Action onDriveModeExited;
 
+
+        private PlayerInputActions _input;
+
+        private void Start()
+        {
+            _input = new PlayerInputActions();
+            _input.Forklift.Enable();
+            _input.Forklift.Movement.performed += Movement_performed;
+            _input.Forklift.Lift.performed += Lift_performed;
+        }
+
+        private void Lift_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            //Lift
+        }
+
+        private void Movement_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            //Movement
+        }
+
         private void OnEnable()
         {
             InteractableZone.onZoneInteractionComplete += EnterDriveMode;
@@ -63,27 +84,50 @@ namespace Game.Scripts.LiveObjects
 
         private void CalcutateMovement()
         {
-            float h = Input.GetAxisRaw("Horizontal");
-            float v = Input.GetAxisRaw("Vertical");
-            var direction = new Vector3(0, 0, v);
+            
+            var move = _input.Forklift.Movement.ReadValue<Vector2>();
+
+            var direction = transform.forward * move.y;
             var velocity = direction * _speed;
 
-            transform.Translate(velocity * Time.deltaTime);
+            //
 
-            if (Mathf.Abs(v) > 0)
+            if (Mathf.Abs(move.x) > 0)
             {
                 var tempRot = transform.rotation.eulerAngles;
-                tempRot.y += h * _speed / 2;
+                tempRot.y += move.y * _speed / 2;
                 transform.rotation = Quaternion.Euler(tempRot);
             }
+
+            //float h = Input.GetAxisRaw("Horizontal");
+            //float v = Input.GetAxisRaw("Vertical");
+
+            //var direction = new Vector3(0, 0, v);
+            //var velocity = direction * _speed;
+
+            //transform.Translate(velocity * Time.deltaTime);
+
+            //if (Mathf.Abs(v) > 0)
+            //{
+            //    var tempRot = transform.rotation.eulerAngles;
+            //    tempRot.y += h * _speed / 2;
+            //    transform.rotation = Quaternion.Euler(tempRot);
+            //}
         }
 
         private void LiftControls()
         {
+            var lift = _input.Forklift.Lift.ReadValue<Vector2>();
+
             if (Input.GetKey(KeyCode.R))
                 LiftUpRoutine();
             else if (Input.GetKey(KeyCode.T))
                 LiftDownRoutine();
+
+            //if (Input.GetKey(KeyCode.R))
+            //    LiftUpRoutine();
+            //else if (Input.GetKey(KeyCode.T))
+            //    LiftDownRoutine();
         }
 
         private void LiftUpRoutine()
