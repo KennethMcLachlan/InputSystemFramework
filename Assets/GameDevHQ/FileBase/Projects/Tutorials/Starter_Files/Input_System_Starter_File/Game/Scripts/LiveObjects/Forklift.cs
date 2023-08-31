@@ -106,13 +106,13 @@ namespace Game.Scripts.LiveObjects
             var direction = transform.forward * move.y;
             var velocity = direction * _speed;
 
-            //
+            
 
-            if (Mathf.Abs(move.x) > 0)
+            if (Mathf.Abs(velocity.y) > 0)
             {
                 var tempRot = transform.rotation.eulerAngles;
                 //tempRot.y += move.y * _speed / 2;
-                tempRot.y += velocity.y * _speed / 2;
+                tempRot.y += move.x * _speed / 2;
                 transform.rotation = Quaternion.Euler(tempRot);
                 transform.Translate(velocity * Time.deltaTime);
 
