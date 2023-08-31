@@ -49,6 +49,7 @@ namespace Game.Scripts.LiveObjects
         private void Movement_performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
         {
             //Movement
+            //Debug.Log("context" + context);
         }
 
         private void OnEnable()

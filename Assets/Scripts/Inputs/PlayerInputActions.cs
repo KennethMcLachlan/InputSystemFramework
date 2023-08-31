@@ -244,9 +244,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Lift"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""7e2180a6-8f5d-4390-a33d-b7cda75e34c8"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""LiftDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""ae491ebf-46bf-43a4-9a27-3fcadd003cac"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -254,8 +263,19 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
+                    ""name"": """",
+                    ""id"": ""c6f03df0-2ab8-4c8e-8e6b-abd1dacad002"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Lift"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""2D Vector"",
-                    ""id"": ""cb65aa46-2e10-40dd-8c6a-43def39fa900"",
+                    ""id"": ""455af66e-d0b3-41f0-889a-963e8eb349af"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -266,7 +286,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""up"",
-                    ""id"": ""7d1d555b-a450-4e87-a249-6a2fe8609208"",
+                    ""id"": ""f5d89829-ca55-431c-a595-7d5cc0ebff1d"",
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -277,7 +297,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""down"",
-                    ""id"": ""d8286c23-6b8e-472b-b091-8ba0a61e02bb"",
+                    ""id"": ""3f4bb0c5-5e28-4705-b708-c5ca5c4ed040"",
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -288,7 +308,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""left"",
-                    ""id"": ""c9101d26-6ec7-4904-b149-6cf4ac75096e"",
+                    ""id"": ""df19765e-858f-43f5-a570-459b504ae31c"",
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -299,7 +319,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""right"",
-                    ""id"": ""66cdc7db-59d5-4181-ab40-532c19101a0f"",
+                    ""id"": ""6589287c-743b-4a08-baaa-509f1d7ae659"",
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -309,59 +329,43 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""dbccf2fd-fbfb-4bc6-a478-969239172ee1"",
-                    ""path"": ""2DVector"",
+                    ""name"": """",
+                    ""id"": ""85e379bc-e0d9-4d46-b464-997d202f4eaf"",
+                    ""path"": ""<Keyboard>/t"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Lift"",
-                    ""isComposite"": true,
+                    ""action"": ""LiftDown"",
+                    ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
+                }
+            ]
+        },
+        {
+            ""name"": ""Crate"",
+            ""id"": ""577319fd-76d6-4d7b-a0e0-9bc215c3917e"",
+            ""actions"": [
                 {
-                    ""name"": ""up"",
-                    ""id"": ""6cc0542e-c003-4e91-96ac-4c9a8fd5c77e"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""ac86f6a4-d111-417a-a00b-863edfb79c8b"",
+                    ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Lift"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""0928c1ca-ed6c-4544-b30b-ff218c2001da"",
-                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Lift"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
                 {
-                    ""name"": ""left"",
-                    ""id"": ""c8b6be72-29af-483d-a579-0e0d94f0b43a"",
+                    ""name"": """",
+                    ""id"": ""7f7d7234-6354-402c-aa5b-ad4a1a67c18b"",
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Lift"",
+                    ""action"": ""New action"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""ef6f45ce-b1c9-4879-b644-ff04a3570cb7"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Lift"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -380,6 +384,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Forklift = asset.FindActionMap("Forklift", throwIfNotFound: true);
         m_Forklift_Movement = m_Forklift.FindAction("Movement", throwIfNotFound: true);
         m_Forklift_Lift = m_Forklift.FindAction("Lift", throwIfNotFound: true);
+        m_Forklift_LiftDown = m_Forklift.FindAction("LiftDown", throwIfNotFound: true);
+        // Crate
+        m_Crate = asset.FindActionMap("Crate", throwIfNotFound: true);
+        m_Crate_Newaction = m_Crate.FindAction("New action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -551,12 +559,14 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IForkliftActions> m_ForkliftActionsCallbackInterfaces = new List<IForkliftActions>();
     private readonly InputAction m_Forklift_Movement;
     private readonly InputAction m_Forklift_Lift;
+    private readonly InputAction m_Forklift_LiftDown;
     public struct ForkliftActions
     {
         private @PlayerInputActions m_Wrapper;
         public ForkliftActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Forklift_Movement;
         public InputAction @Lift => m_Wrapper.m_Forklift_Lift;
+        public InputAction @LiftDown => m_Wrapper.m_Forklift_LiftDown;
         public InputActionMap Get() { return m_Wrapper.m_Forklift; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -572,6 +582,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Lift.started += instance.OnLift;
             @Lift.performed += instance.OnLift;
             @Lift.canceled += instance.OnLift;
+            @LiftDown.started += instance.OnLiftDown;
+            @LiftDown.performed += instance.OnLiftDown;
+            @LiftDown.canceled += instance.OnLiftDown;
         }
 
         private void UnregisterCallbacks(IForkliftActions instance)
@@ -582,6 +595,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Lift.started -= instance.OnLift;
             @Lift.performed -= instance.OnLift;
             @Lift.canceled -= instance.OnLift;
+            @LiftDown.started -= instance.OnLiftDown;
+            @LiftDown.performed -= instance.OnLiftDown;
+            @LiftDown.canceled -= instance.OnLiftDown;
         }
 
         public void RemoveCallbacks(IForkliftActions instance)
@@ -599,6 +615,52 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         }
     }
     public ForkliftActions @Forklift => new ForkliftActions(this);
+
+    // Crate
+    private readonly InputActionMap m_Crate;
+    private List<ICrateActions> m_CrateActionsCallbackInterfaces = new List<ICrateActions>();
+    private readonly InputAction m_Crate_Newaction;
+    public struct CrateActions
+    {
+        private @PlayerInputActions m_Wrapper;
+        public CrateActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Newaction => m_Wrapper.m_Crate_Newaction;
+        public InputActionMap Get() { return m_Wrapper.m_Crate; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(CrateActions set) { return set.Get(); }
+        public void AddCallbacks(ICrateActions instance)
+        {
+            if (instance == null || m_Wrapper.m_CrateActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CrateActionsCallbackInterfaces.Add(instance);
+            @Newaction.started += instance.OnNewaction;
+            @Newaction.performed += instance.OnNewaction;
+            @Newaction.canceled += instance.OnNewaction;
+        }
+
+        private void UnregisterCallbacks(ICrateActions instance)
+        {
+            @Newaction.started -= instance.OnNewaction;
+            @Newaction.performed -= instance.OnNewaction;
+            @Newaction.canceled -= instance.OnNewaction;
+        }
+
+        public void RemoveCallbacks(ICrateActions instance)
+        {
+            if (m_Wrapper.m_CrateActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ICrateActions instance)
+        {
+            foreach (var item in m_Wrapper.m_CrateActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_CrateActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public CrateActions @Crate => new CrateActions(this);
     public interface IPlayerActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -613,5 +675,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnLift(InputAction.CallbackContext context);
+        void OnLiftDown(InputAction.CallbackContext context);
+    }
+    public interface ICrateActions
+    {
+        void OnNewaction(InputAction.CallbackContext context);
     }
 }

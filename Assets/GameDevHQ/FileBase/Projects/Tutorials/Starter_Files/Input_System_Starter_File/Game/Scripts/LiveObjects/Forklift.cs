@@ -26,12 +26,28 @@ namespace Game.Scripts.LiveObjects
 
         private PlayerInputActions _input;
 
+        private bool _liftPressed;
+
         private void Start()
         {
             _input = new PlayerInputActions();
             _input.Forklift.Enable();
             _input.Forklift.Movement.performed += Movement_performed;
             _input.Forklift.Lift.performed += Lift_performed;
+            _input.Forklift.Lift.canceled += Lift_canceled;
+            _input.Forklift.LiftDown.performed += LiftDown_performed;
+
+            
+        }
+
+        private void Lift_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            //Lift Canceled
+        }
+
+        private void LiftDown_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+        {
+            //Lift down
         }
 
         private void Lift_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -95,8 +111,11 @@ namespace Game.Scripts.LiveObjects
             if (Mathf.Abs(move.x) > 0)
             {
                 var tempRot = transform.rotation.eulerAngles;
-                tempRot.y += move.y * _speed / 2;
+                //tempRot.y += move.y * _speed / 2;
+                tempRot.y += velocity.y * _speed / 2;
                 transform.rotation = Quaternion.Euler(tempRot);
+                transform.Translate(velocity * Time.deltaTime);
+
             }
 
             //float h = Input.GetAxisRaw("Horizontal");
@@ -117,26 +136,61 @@ namespace Game.Scripts.LiveObjects
 
         private void LiftControls()
         {
-            var lift = _input.Forklift.Lift.ReadValue<Vector2>();
+            //var lift = _input.Forklift.Lift.WasPressedThisFrame();
+            //var liftStop = _input.Forklift.Lift.WasReleasedThisFrame();
 
-            if (Input.GetKey(KeyCode.R))
+            var lift = _input.Forklift.Lift.triggered ;
+            var liftDown = _input.Forklift.Lift.triggered;
+
+            //var liftDown = _input.Forklift.LiftDown.WasPressedThisFrame();
+            //var liftDownStop = _input.Forklift.LiftDown.WasReleasedThisFrame();
+
+            //if (lift && _liftUp == true)
+            //    LiftUpRoutine();
+            //else if (liftStop)
+            //{
+            //    _liftUp = false;
+            //}
+
+            //if (liftDown && _liftUp == false)
+            //{
+            //    LiftDownRoutine();
+            //    _liftUp = true;
+            //}
+            //else if (liftDownStop)
+            //{
+            //    liftDown = false;
+            //}
+
+
+
+            if (lift)
+            {
+                //_liftPressed = true;
                 LiftUpRoutine();
-            else if (Input.GetKey(KeyCode.T))
+            }
+            if (liftDown /* && _liftPressed == false*/)
+            {
+                //_liftPressed = false;
                 LiftDownRoutine();
+            }
 
             //if (Input.GetKey(KeyCode.R))
             //    LiftUpRoutine();
             //else if (Input.GetKey(KeyCode.T))
             //    LiftDownRoutine();
+
         }
 
         private void LiftUpRoutine()
         {
+            //_liftUp = true;
             if (_lift.transform.localPosition.y < _liftUpperLimit.y)
             {
                 Vector3 tempPos = _lift.transform.localPosition;
                 tempPos.y += Time.deltaTime * _liftSpeed;
                 _lift.transform.localPosition = new Vector3(tempPos.x, tempPos.y, tempPos.z);
+                Debug.Log("Lift Up was Performed");
             }
             else if (_lift.transform.localPosition.y >= _liftUpperLimit.y)
                 _lift.transform.localPosition = _liftUpperLimit;
@@ -144,6 +198,8 @@ namespace Game.Scripts.LiveObjects
 
         private void LiftDownRoutine()
         {
+            //_liftUp = false;
+
             if (_lift.transform.localPosition.y > _liftLowerLimit.y)
             {
                 Vector3 tempPos = _lift.transform.localPosition;

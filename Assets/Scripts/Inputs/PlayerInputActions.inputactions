@@ -222,9 +222,18 @@
                 },
                 {
                     "name": "Lift",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "7e2180a6-8f5d-4390-a33d-b7cda75e34c8",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "LiftDown",
+                    "type": "Button",
+                    "id": "ae491ebf-46bf-43a4-9a27-3fcadd003cac",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -232,8 +241,19 @@
             ],
             "bindings": [
                 {
+                    "name": "",
+                    "id": "c6f03df0-2ab8-4c8e-8e6b-abd1dacad002",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lift",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "2D Vector",
-                    "id": "cb65aa46-2e10-40dd-8c6a-43def39fa900",
+                    "id": "455af66e-d0b3-41f0-889a-963e8eb349af",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -244,7 +264,7 @@
                 },
                 {
                     "name": "up",
-                    "id": "7d1d555b-a450-4e87-a249-6a2fe8609208",
+                    "id": "f5d89829-ca55-431c-a595-7d5cc0ebff1d",
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
@@ -255,7 +275,7 @@
                 },
                 {
                     "name": "down",
-                    "id": "d8286c23-6b8e-472b-b091-8ba0a61e02bb",
+                    "id": "3f4bb0c5-5e28-4705-b708-c5ca5c4ed040",
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
@@ -266,7 +286,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "c9101d26-6ec7-4904-b149-6cf4ac75096e",
+                    "id": "df19765e-858f-43f5-a570-459b504ae31c",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
@@ -277,7 +297,7 @@
                 },
                 {
                     "name": "right",
-                    "id": "66cdc7db-59d5-4181-ab40-532c19101a0f",
+                    "id": "6589287c-743b-4a08-baaa-509f1d7ae659",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
@@ -287,59 +307,43 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "dbccf2fd-fbfb-4bc6-a478-969239172ee1",
-                    "path": "2DVector",
+                    "name": "",
+                    "id": "85e379bc-e0d9-4d46-b464-997d202f4eaf",
+                    "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Lift",
-                    "isComposite": true,
+                    "action": "LiftDown",
+                    "isComposite": false,
                     "isPartOfComposite": false
-                },
+                }
+            ]
+        },
+        {
+            "name": "Crate",
+            "id": "577319fd-76d6-4d7b-a0e0-9bc215c3917e",
+            "actions": [
                 {
-                    "name": "up",
-                    "id": "6cc0542e-c003-4e91-96ac-4c9a8fd5c77e",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "ac86f6a4-d111-417a-a00b-863edfb79c8b",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "groups": "",
-                    "action": "Lift",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "0928c1ca-ed6c-4544-b30b-ff218c2001da",
-                    "path": "<Keyboard>/f",
                     "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Lift",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
                 {
-                    "name": "left",
-                    "id": "c8b6be72-29af-483d-a579-0e0d94f0b43a",
+                    "name": "",
+                    "id": "7f7d7234-6354-402c-aa5b-ad4a1a67c18b",
                     "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Lift",
+                    "action": "New action",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "ef6f45ce-b1c9-4879-b644-ff04a3570cb7",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Lift",
-                    "isComposite": false,
-                    "isPartOfComposite": true
+                    "isPartOfComposite": false
                 }
             ]
         }
