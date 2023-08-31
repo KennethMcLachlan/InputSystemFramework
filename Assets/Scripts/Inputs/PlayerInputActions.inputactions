@@ -222,9 +222,9 @@
                 },
                 {
                     "name": "Lift",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "7e2180a6-8f5d-4390-a33d-b7cda75e34c8",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -232,24 +232,46 @@
                 {
                     "name": "LiftDown",
                     "type": "Button",
-                    "id": "ae491ebf-46bf-43a4-9a27-3fcadd003cac",
+                    "id": "e57d3192-9d3b-45d4-94b9-445d7203e755",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
-                    "name": "",
-                    "id": "c6f03df0-2ab8-4c8e-8e6b-abd1dacad002",
+                    "name": "1D Axis",
+                    "id": "1107780c-65c2-4d2b-ab4a-330cf7c85368",
+                    "path": "1DAxis(minValue=0)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lift",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Negative",
+                    "id": "6cedb2c0-5f58-4423-92ec-efab469da133",
+                    "path": "<Keyboard>/t",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lift",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Positive",
+                    "id": "58ab6d98-9ba0-4f25-8c32-caca0e9def0d",
                     "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Lift",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
                 },
                 {
                     "name": "2D Vector",
@@ -307,15 +329,37 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "85e379bc-e0d9-4d46-b464-997d202f4eaf",
+                    "name": "1D Axis",
+                    "id": "e0e6fc91-1dde-47e6-9ec5-3f981a37973d",
+                    "path": "1DAxis(minValue=0)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LiftDown",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "5364b689-7ca6-4be4-84ff-01e534e3b71c",
                     "path": "<Keyboard>/t",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "LiftDown",
                     "isComposite": false,
-                    "isPartOfComposite": false
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "0023a1c5-6b96-4210-86ba-408daa8176f0",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LiftDown",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

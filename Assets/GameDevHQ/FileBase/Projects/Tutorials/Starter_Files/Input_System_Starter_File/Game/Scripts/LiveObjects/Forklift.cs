@@ -139,8 +139,8 @@ namespace Game.Scripts.LiveObjects
             //var lift = _input.Forklift.Lift.WasPressedThisFrame();
             //var liftStop = _input.Forklift.Lift.WasReleasedThisFrame();
 
-            var lift = _input.Forklift.Lift.triggered ;
-            var liftDown = _input.Forklift.Lift.triggered;
+            var lift = _input.Forklift.Lift.triggered;
+            var liftDown = _input.Forklift.LiftDown.triggered;
 
             //var liftDown = _input.Forklift.LiftDown.WasPressedThisFrame();
             //var liftDownStop = _input.Forklift.LiftDown.WasReleasedThisFrame();
@@ -205,6 +205,7 @@ namespace Game.Scripts.LiveObjects
                 Vector3 tempPos = _lift.transform.localPosition;
                 tempPos.y -= Time.deltaTime * _liftSpeed;
                 _lift.transform.localPosition = new Vector3(tempPos.x, tempPos.y, tempPos.z);
+                Debug.Log("LiftDow nwas performed");
             }
             else if (_lift.transform.localPosition.y <= _liftUpperLimit.y)
                 _lift.transform.localPosition = _liftLowerLimit;
