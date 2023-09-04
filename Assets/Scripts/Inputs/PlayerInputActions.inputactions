@@ -228,22 +228,13 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-                },
-                {
-                    "name": "LiftDown",
-                    "type": "Button",
-                    "id": "e57d3192-9d3b-45d4-94b9-445d7203e755",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
                     "name": "1D Axis",
                     "id": "1107780c-65c2-4d2b-ab4a-330cf7c85368",
-                    "path": "1DAxis(minValue=0)",
+                    "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -327,39 +318,6 @@
                     "action": "Movement",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "1D Axis",
-                    "id": "e0e6fc91-1dde-47e6-9ec5-3f981a37973d",
-                    "path": "1DAxis(minValue=0)",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LiftDown",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "5364b689-7ca6-4be4-84ff-01e534e3b71c",
-                    "path": "<Keyboard>/t",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LiftDown",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "0023a1c5-6b96-4210-86ba-408daa8176f0",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "LiftDown",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         },
@@ -368,28 +326,16 @@
             "id": "577319fd-76d6-4d7b-a0e0-9bc215c3917e",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Destroy",
                     "type": "Button",
-                    "id": "ac86f6a4-d111-417a-a00b-863edfb79c8b",
+                    "id": "6229cbed-92f9-457d-821f-d5700d015b05",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold(duration=1)",
                     "initialStateCheck": false
                 }
             ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "7f7d7234-6354-402c-aa5b-ad4a1a67c18b",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
+            "bindings": []
         }
     ],
     "controlSchemes": []

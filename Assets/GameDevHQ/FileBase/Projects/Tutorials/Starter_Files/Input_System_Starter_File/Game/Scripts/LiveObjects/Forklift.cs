@@ -35,19 +35,11 @@ namespace Game.Scripts.LiveObjects
             _input.Forklift.Movement.performed += Movement_performed;
             _input.Forklift.Lift.performed += Lift_performed;
             _input.Forklift.Lift.canceled += Lift_canceled;
-            _input.Forklift.LiftDown.performed += LiftDown_performed;
-
-            
         }
 
         private void Lift_canceled(UnityEngine.InputSystem.InputAction.CallbackContext obj)
         {
             //Lift Canceled
-        }
-
-        private void LiftDown_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
-        {
-            //Lift down
         }
 
         private void Lift_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -136,49 +128,22 @@ namespace Game.Scripts.LiveObjects
 
         private void LiftControls()
         {
-            //var lift = _input.Forklift.Lift.WasPressedThisFrame();
-            //var liftStop = _input.Forklift.Lift.WasReleasedThisFrame();
-
-            var lift = _input.Forklift.Lift.triggered;
-            var liftDown = _input.Forklift.LiftDown.triggered;
-
-            //var liftDown = _input.Forklift.LiftDown.WasPressedThisFrame();
-            //var liftDownStop = _input.Forklift.LiftDown.WasReleasedThisFrame();
-
-            //if (lift && _liftUp == true)
-            //    LiftUpRoutine();
-            //else if (liftStop)
-            //{
-            //    _liftUp = false;
-            //}
-
-            //if (liftDown && _liftUp == false)
-            //{
-            //    LiftDownRoutine();
-            //    _liftUp = true;
-            //}
-            //else if (liftDownStop)
-            //{
-            //    liftDown = false;
-            //}
-
-
-
-            if (lift)
-            {
-                //_liftPressed = true;
-                LiftUpRoutine();
-            }
-            if (liftDown /* && _liftPressed == false*/)
-            {
-                //_liftPressed = false;
-                LiftDownRoutine();
-            }
-
+            
             //if (Input.GetKey(KeyCode.R))
             //    LiftUpRoutine();
             //else if (Input.GetKey(KeyCode.T))
             //    LiftDownRoutine();
+
+            var liftInput = _input.Forklift.Lift.ReadValue<float>();
+
+            if (liftInput > 0)
+            {
+                LiftUpRoutine();
+            }
+            else if (liftInput < 0)
+            {
+                LiftDownRoutine();
+            }
 
         }
 

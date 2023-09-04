@@ -15,6 +15,8 @@ namespace Game.Scripts.LiveObjects
 
         private List<Rigidbody> _brakeOff = new List<Rigidbody>();
 
+        private PlayerInputActions _input;
+
         private void OnEnable()
         {
             InteractableZone.onZoneInteractionComplete += InteractableZone_onZoneInteractionComplete;
@@ -49,11 +51,27 @@ namespace Game.Scripts.LiveObjects
 
         private void Start()
         {
+            _input = new PlayerInputActions();
+            _input.Crate.Enable();
+            _input.Crate.Destroy.performed += Destroy_performed;
+            _input.Crate.Destroy.canceled += Destroy_canceled;
+
             _brakeOff.AddRange(_pieces);
             
         }
 
+        private void Destroy_canceled(UnityEngine.InputSystem.InputAction.CallbackContext context)
+        {
+            //Canceled
+            //context.duration
+            var forceEffect = context.duration;
+        }
 
+        private void Destroy_performed(UnityEngine.InputSystem.InputAction.CallbackContext context)
+        {
+            //Performed
+            // Use _isReadyToBreak
+        }
 
         public void BreakPart()
         {

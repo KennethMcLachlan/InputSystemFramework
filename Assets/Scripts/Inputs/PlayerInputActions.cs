@@ -250,22 +250,13 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
-                },
-                {
-                    ""name"": ""LiftDown"",
-                    ""type"": ""Button"",
-                    ""id"": ""e57d3192-9d3b-45d4-94b9-445d7203e755"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": ""1D Axis"",
                     ""id"": ""1107780c-65c2-4d2b-ab4a-330cf7c85368"",
-                    ""path"": ""1DAxis(minValue=0)"",
+                    ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -349,39 +340,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""1D Axis"",
-                    ""id"": ""e0e6fc91-1dde-47e6-9ec5-3f981a37973d"",
-                    ""path"": ""1DAxis(minValue=0)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LiftDown"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""negative"",
-                    ""id"": ""5364b689-7ca6-4be4-84ff-01e534e3b71c"",
-                    ""path"": ""<Keyboard>/t"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LiftDown"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""positive"",
-                    ""id"": ""0023a1c5-6b96-4210-86ba-408daa8176f0"",
-                    ""path"": ""<Keyboard>/r"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LiftDown"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -390,28 +348,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             ""id"": ""577319fd-76d6-4d7b-a0e0-9bc215c3917e"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Destroy"",
                     ""type"": ""Button"",
-                    ""id"": ""ac86f6a4-d111-417a-a00b-863edfb79c8b"",
+                    ""id"": ""6229cbed-92f9-457d-821f-d5700d015b05"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
+                    ""interactions"": ""Hold(duration=1)"",
                     ""initialStateCheck"": false
                 }
             ],
-            ""bindings"": [
-                {
-                    ""name"": """",
-                    ""id"": ""7f7d7234-6354-402c-aa5b-ad4a1a67c18b"",
-                    ""path"": """",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                }
-            ]
+            ""bindings"": []
         }
     ],
     ""controlSchemes"": []
@@ -428,10 +374,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Forklift = asset.FindActionMap("Forklift", throwIfNotFound: true);
         m_Forklift_Movement = m_Forklift.FindAction("Movement", throwIfNotFound: true);
         m_Forklift_Lift = m_Forklift.FindAction("Lift", throwIfNotFound: true);
-        m_Forklift_LiftDown = m_Forklift.FindAction("LiftDown", throwIfNotFound: true);
         // Crate
         m_Crate = asset.FindActionMap("Crate", throwIfNotFound: true);
-        m_Crate_Newaction = m_Crate.FindAction("New action", throwIfNotFound: true);
+        m_Crate_Destroy = m_Crate.FindAction("Destroy", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -603,14 +548,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IForkliftActions> m_ForkliftActionsCallbackInterfaces = new List<IForkliftActions>();
     private readonly InputAction m_Forklift_Movement;
     private readonly InputAction m_Forklift_Lift;
-    private readonly InputAction m_Forklift_LiftDown;
     public struct ForkliftActions
     {
         private @PlayerInputActions m_Wrapper;
         public ForkliftActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Forklift_Movement;
         public InputAction @Lift => m_Wrapper.m_Forklift_Lift;
-        public InputAction @LiftDown => m_Wrapper.m_Forklift_LiftDown;
         public InputActionMap Get() { return m_Wrapper.m_Forklift; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -626,9 +569,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Lift.started += instance.OnLift;
             @Lift.performed += instance.OnLift;
             @Lift.canceled += instance.OnLift;
-            @LiftDown.started += instance.OnLiftDown;
-            @LiftDown.performed += instance.OnLiftDown;
-            @LiftDown.canceled += instance.OnLiftDown;
         }
 
         private void UnregisterCallbacks(IForkliftActions instance)
@@ -639,9 +579,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Lift.started -= instance.OnLift;
             @Lift.performed -= instance.OnLift;
             @Lift.canceled -= instance.OnLift;
-            @LiftDown.started -= instance.OnLiftDown;
-            @LiftDown.performed -= instance.OnLiftDown;
-            @LiftDown.canceled -= instance.OnLiftDown;
         }
 
         public void RemoveCallbacks(IForkliftActions instance)
@@ -663,12 +600,12 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     // Crate
     private readonly InputActionMap m_Crate;
     private List<ICrateActions> m_CrateActionsCallbackInterfaces = new List<ICrateActions>();
-    private readonly InputAction m_Crate_Newaction;
+    private readonly InputAction m_Crate_Destroy;
     public struct CrateActions
     {
         private @PlayerInputActions m_Wrapper;
         public CrateActions(@PlayerInputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Crate_Newaction;
+        public InputAction @Destroy => m_Wrapper.m_Crate_Destroy;
         public InputActionMap Get() { return m_Wrapper.m_Crate; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -678,16 +615,16 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_CrateActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_CrateActionsCallbackInterfaces.Add(instance);
-            @Newaction.started += instance.OnNewaction;
-            @Newaction.performed += instance.OnNewaction;
-            @Newaction.canceled += instance.OnNewaction;
+            @Destroy.started += instance.OnDestroy;
+            @Destroy.performed += instance.OnDestroy;
+            @Destroy.canceled += instance.OnDestroy;
         }
 
         private void UnregisterCallbacks(ICrateActions instance)
         {
-            @Newaction.started -= instance.OnNewaction;
-            @Newaction.performed -= instance.OnNewaction;
-            @Newaction.canceled -= instance.OnNewaction;
+            @Destroy.started -= instance.OnDestroy;
+            @Destroy.performed -= instance.OnDestroy;
+            @Destroy.canceled -= instance.OnDestroy;
         }
 
         public void RemoveCallbacks(ICrateActions instance)
@@ -719,10 +656,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnLift(InputAction.CallbackContext context);
-        void OnLiftDown(InputAction.CallbackContext context);
     }
     public interface ICrateActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnDestroy(InputAction.CallbackContext context);
     }
 }
