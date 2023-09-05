@@ -331,11 +331,23 @@
                     "id": "6229cbed-92f9-457d-821f-d5700d015b05",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold(duration=1)",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
-            "bindings": []
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ba8d2a20-459b-47af-8e3e-a8dcf689d6ee",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "Hold(duration=1,pressPoint=0.1)",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Destroy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
