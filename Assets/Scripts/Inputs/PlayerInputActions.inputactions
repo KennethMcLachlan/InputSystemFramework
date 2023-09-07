@@ -338,7 +338,7 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "ba8d2a20-459b-47af-8e3e-a8dcf689d6ee",
+                    "id": "e1a27595-8f99-46c8-ad5a-a7bbc4367d79",
                     "path": "<Keyboard>/enter",
                     "interactions": "Hold(duration=1,pressPoint=0.1)",
                     "processors": "",

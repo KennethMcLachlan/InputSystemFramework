@@ -175,10 +175,7 @@ namespace Game.Scripts.LiveObjects
             {
                 _progressBar.gameObject.SetActive(true);
 
-                Debug.Log("Progress bar is active");
-
                 StartCoroutine(HackingRoutine());
-                Debug.Log("Hacking Routine is Running");
                 onHackComplete?.Invoke();
             }
         }
@@ -192,7 +189,6 @@ namespace Game.Scripts.LiveObjects
                     return;
 
                 StopAllCoroutines();
-                Debug.Log("Coroutine has stopped");
                 _progressBar.gameObject.SetActive(false);
                 _progressBar.value = 0;
                 onHackEnded?.Invoke();
